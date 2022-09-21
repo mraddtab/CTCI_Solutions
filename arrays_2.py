@@ -14,13 +14,27 @@ def permutations(str, L, R):
     swapped = swap(L,i,str)
     ret += permutations(swapped, L + 1, R)
   return ret
-  
-def check_permutation(str1, str2):
+
+#O(n!) Calculate all the permutations of a string, and check if the other string
+#is one of them.
+def check_permutation_brute (str1, str2):
   if str2 in permutations(str1, 0, len(str1) - 1):
     return True
   else:
     return False
 
+
+#O(nlog(n)) More intuitive way is to just turn the two strings into a lists, sort them and check if they're equal. list.sort() is nlog(n) 
+def check_permutation_sort(str1, str2):
+  str1_arr = list(str1)
+  str2_arr = list(str2)
+  str1_arr.sort()
+  str2_arr.sort()
+  if str1_arr != str2_arr:
+    return False
+  return True
+
+print(list("abc").sort())
 
 test1 = ("", "abc")  #fail
 test2 = ("a", "abc") #fail
